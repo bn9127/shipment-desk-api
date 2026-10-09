@@ -1,0 +1,29 @@
+@host = http://localhost:5075
+@key = demo-key-change-me
+
+GET {{host}}/health
+
+###
+
+POST {{host}}/api/shipments
+Content-Type: application/json
+X-Api-Key: {{key}}
+
+{
+  "reference": "SD1001",
+  "origin": "BOM",
+  "destination": "FRA",
+  "shipper": "Northwind Traders"
+}
+
+###
+
+POST {{host}}/api/shipments/{{id}}/milestones
+Content-Type: application/json
+X-Api-Key: {{key}}
+
+{
+  "status": "Accepted",
+  "location": "BOM",
+  "note": "Accepted at origin"
+}
